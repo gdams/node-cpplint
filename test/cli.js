@@ -26,7 +26,7 @@ suite.addBatch({
 
     'default verbosity is 1': function (err, stdout) {
       var lines = stdout.split('\n');
-      assert.lengthOf(lines, 7);
+      assert.lengthOf(lines, 6);
     },
 
     'default reporter is spec': function (err, stdout) {
@@ -37,12 +37,12 @@ suite.addBatch({
 
     'default filters is no filters': function (err, stdout) {
       var lines = stdout.split('\n');
-      assert.lengthOf(lines, 7);
+      assert.lengthOf(lines, 6);
     },
 
     'default extensions is no extensions': function (err, stdout) {
       var lines = stdout.split('\n');
-      assert.lengthOf(lines, 7);
+      assert.lengthOf(lines, 6);
     }
   }
 });

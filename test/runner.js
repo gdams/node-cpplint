@@ -32,50 +32,28 @@ var verbosityLevel0 = {
   },
   'should report 5 errors': function (err, report) {
     report = report[Object.keys(report)[0]];
-    assert.equal(report.length, 5);
+    assert.equal(report.length, 4);
   },
   'should report errors in sequential order (based on line numbers)':
   function (err, report) {
     report = report[Object.keys(report)[0]];
-    assert.equal(report[0].linenumber, '0');
-    assert.equal(report[1].linenumber, '5');
-    assert.equal(report[2].linenumber, '6');
-    assert.equal(report[3].linenumber, '9');
-    assert.equal(report[4].linenumber, '14');
-  },
-  'should report on line [legal/copyright] [5] at line #0':
-  function (err, report) {
-    var error = report[Object.keys(report)[0]][0];
-
-    assert.equal(error.reason, 'No copyright message found.  You should have a'
-        + ' line: "Copyright [year] <Copyright Owner>"');
-    assert.equal(error.category, 'legal');
-    assert.equal(error.sub_category, 'copyright');
-    assert.equal(error.linenumber, '0');
-  },
-  'should report on line [build/namespaces] [5] at line #5':
-  function (err, report) {
-    var error = report[Object.keys(report)[0]][1];
-    assert.equal(error.reason, 'Do not use namespace using-directives.'
-        + ' Use using-declarations instead.');
-    assert.equal(error.category, 'build');
-    assert.equal(error.sub_category, 'namespaces');
-    assert.equal(error.linenumber, '5');
+    assert.equal(report[0].linenumber, '5');
+    assert.equal(report[1].linenumber, '6');
+    assert.equal(report[2].linenumber, '9');
+    assert.equal(report[3].linenumber, '14');
   },
   'should report on line [build/namespaces] [5] at line #6':
   function (err, report) {
-    var error = report[Object.keys(report)[0]][2];
-
+    var error = report[Object.keys(report)[0]][1];
     assert.equal(error.reason, 'Do not use namespace using-directives.'
-        + ' Use using-declarations instead.');
+        + '  Use using-declarations instead.');
     assert.equal(error.category, 'build');
     assert.equal(error.sub_category, 'namespaces');
     assert.equal(error.linenumber, '6');
   },
-  'should report on line [whitespace/braces] [4] at line #9':
+  'should report on line [whitespace/braces] [5] at line #9':
   function (err, report) {
-    var error = report[Object.keys(report)[0]][3];
-
+    var error = report[Object.keys(report)[0]][2];
     assert.equal(error.reason, '{ should almost always be at the end of the'
         + ' previous line');
     assert.equal(error.category, 'whitespace');
@@ -84,7 +62,7 @@ var verbosityLevel0 = {
   },
   'should report on line [whitespace/braces] [4] at line #14':
   function (err, report) {
-    var error = report[Object.keys(report)[0]][4];
+    var error = report[Object.keys(report)[0]][3];
 
     assert.equal(error.reason, '{ should almost always be at the end of the'
         + ' previous line');
@@ -139,43 +117,32 @@ suite.addBatch({
     'should pass an object': function (err, report) {
       assert.isObject(report);
     },
-    'should report 3 errors': function (err, report) {
+    'should report 2 errors': function (err, report) {
       report = report[Object.keys(report)[0]];
-      assert.equal(report.length, 3);
+      assert.equal(report.length, 2);
     },
     'should report errors in sequential order (based on line numbers)':
     function (err, report) {
       report = report[Object.keys(report)[0]];
-      assert.equal(report[0].linenumber, '0');
-      assert.equal(report[1].linenumber, '5');
-      assert.equal(report[2].linenumber, '6');
-    },
-    'should report on line [legal/copyright] [5] at line #0':
-    function (err, report) {
-      var error = report[Object.keys(report)[0]][0];
-
-      assert.equal(error.reason, 'No copyright message found.  You should have'
-          + ' a line: "Copyright [year] <Copyright Owner>"');
-      assert.equal(error.category, 'legal');
-      assert.equal(error.sub_category, 'copyright');
-      assert.equal(error.linenumber, '0');
+      assert.equal(report[0].linenumber, '5');
+      assert.equal(report[1].linenumber, '6');
     },
     'should report on line [build/namespaces] [5] at line #5':
     function (err, report) {
-      var error = report[Object.keys(report)[0]][1];
+      var error = report[Object.keys(report)[0]][0];
 
       assert.equal(error.reason, 'Do not use namespace using-directives.'
-          + ' Use using-declarations instead.');
+          + '  Use using-declarations instead.');
       assert.equal(error.category, 'build');
       assert.equal(error.sub_category, 'namespaces');
       assert.equal(error.linenumber, '5');
     },
     'should report on line [build/namespaces] [5] at line #6':
     function (err, report) {
-      var error = report[Object.keys(report)[0]][2];
+      var error = report[Object.keys(report)[0]][1];
 
       assert.equal(error.reason, 'Do not use namespace using-directives.'
-          + ' Use using-declarations instead.');
+          + '  Use using-declarations instead.');
       assert.equal(error.category, 'build');
       assert.equal(error.sub_category, 'namespaces');
       assert.equal(error.linenumber, '6');
